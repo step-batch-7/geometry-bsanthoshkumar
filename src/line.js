@@ -7,7 +7,7 @@ class Line {
     return this == other;
   }
   toString() {
-    return "";
+    return `Line from (${this.endA.x},${this.endA.y}) to (${this.endB.x},${this.endB.y})`;
   }
 }
 
