@@ -48,4 +48,12 @@ describe("Line", function() {
       assert.approximately(line.slope, 2, 0.5);
     });
   });
+
+  describe("isParallelTo", function() {
+    it("should give true for parallel lines", function() {
+      const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const line2 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      assert.strictEqual(line1.isParallelTo(line2), true);
+    });
+  });
 });

@@ -37,6 +37,10 @@ class Line {
     const lengthBetweenXPoints = this.endB.x - this.endA.x;
     return lengthBetweenYPoints / lengthBetweenXPoints;
   }
+
+  isParallelTo(other) {
+    return this.slope == other.slope;
+  }
 }
 
 module.exports = Line;
