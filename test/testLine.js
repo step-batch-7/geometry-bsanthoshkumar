@@ -52,8 +52,14 @@ describe("Line", function() {
   describe("isParallelTo", function() {
     it("should give true for parallel lines", function() {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
-      const line2 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const line2 = new Line({ x: 2, y: 4 }, { x: 6, y: 8 });
       assert.strictEqual(line1.isParallelTo(line2), true);
+    });
+
+    it("should give false for not parallel lines", function() {
+      const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const line2 = new Line({ x: 7, y: 10 }, { x: 8, y: 9 });
+      assert.strictEqual(line1.isParallelTo(line2), false);
     });
   });
 });
