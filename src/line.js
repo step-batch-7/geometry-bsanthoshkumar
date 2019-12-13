@@ -23,6 +23,14 @@ class Line {
   toString() {
     return `Line from (${this.endA.x},${this.endA.y}) to (${this.endB.x},${this.endB.y})`;
   }
+
+  get length() {
+    const lengthBetweenXPoints = this.endB.x - this.endA.x;
+    const lengthBetweenYPoints = this.endB.y - this.endA.y;
+    const sum =
+      Math.pow(lengthBetweenXPoints, 2) + Math.pow(lengthBetweenYPoints, 2);
+    return Math.sqrt(sum);
+  }
 }
 
 module.exports = Line;
