@@ -22,5 +22,11 @@ describe("Line", function() {
       line2 = new Line({ x: 4, y: 3 }, { x: 2, y: 1 });
       assert.strictEqual(line1.isEqualTo(line2), false);
     });
+
+    it("should return false for two lines of different instances", function() {
+      line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      line2 = { endA: { x: 1, y: 2 }, endB: { x: 3, y: 4 } };
+      assert.strictEqual(line1.isEqualTo(line2), false);
+    });
   });
 });
