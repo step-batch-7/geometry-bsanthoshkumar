@@ -47,6 +47,16 @@ describe("Line", function() {
       const line = new Line({ x: 8, y: 13 }, { x: 2, y: 3 });
       assert.approximately(line.slope, 2, 0.5);
     });
+
+    it("should give slope 0 for line of same y-values", function() {
+      const line = new Line({ x: 1, y: 3 }, { x: 2, y: 3 });
+      assert.strictEqual(line.slope, 0);
+    });
+
+    it("should give slope 0 for line of same x-values", function() {
+      const line = new Line({ x: 1, y: 3 }, { x: 1, y: 5 });
+      assert.strictEqual(line.slope, Infinity);
+    });
   });
 
   describe("isParallelTo", function() {
