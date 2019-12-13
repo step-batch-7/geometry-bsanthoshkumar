@@ -1,5 +1,8 @@
 class Line {
-  constructor() {}
+  constructor(endA, endB) {
+    this.endA = endA;
+    this.endB = endB;
+  }
   isEqualTo(other) {
     return this == other;
   }
