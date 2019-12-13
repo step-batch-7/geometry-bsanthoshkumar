@@ -1,4 +1,4 @@
-const assert = require("assert");
+const assert = require("chai").assert;
 const Line = require("../src/line");
 
 describe("Line", function() {
@@ -31,9 +31,21 @@ describe("Line", function() {
   });
 
   describe("length", function() {
-    it("should give length of a line", function() {
-      const line = new Line({ x: 2, y: 1 }, { x: 6, y: 4 });
-      assert.strictEqual(line.length, 5);
+    it("should give length of a line for positive values", function() {
+      const line = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      assert.approximately(line.length, 3, 0.5);
+    });
+
+    it("should give length of a line for negative values", function() {
+      const line = new Line({ x: -2, y: 1 }, { x: 6, y: -4 });
+      assert.approximately(line.length, 9, 0.5);
+    });
+  });
+
+  describe("slope", function() {
+    it("should give slope of a line", function() {
+      const line = new Line({ x: 8, y: 13 }, { x: 2, y: 3 });
+      assert.approximately(line.slope, 2, 0.5);
     });
   });
 });

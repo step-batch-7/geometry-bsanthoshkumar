@@ -27,9 +27,15 @@ class Line {
   get length() {
     const lengthBetweenXPoints = this.endB.x - this.endA.x;
     const lengthBetweenYPoints = this.endB.y - this.endA.y;
-    const sum =
+    const sumOfLengths =
       Math.pow(lengthBetweenXPoints, 2) + Math.pow(lengthBetweenYPoints, 2);
-    return Math.sqrt(sum);
+    return Math.sqrt(sumOfLengths);
+  }
+
+  get slope() {
+    const lengthBetweenYPoints = this.endB.y - this.endA.y;
+    const lengthBetweenXPoints = this.endB.x - this.endA.x;
+    return lengthBetweenYPoints / lengthBetweenXPoints;
   }
 }
 
