@@ -44,6 +44,9 @@ class Line {
   }
 
   findX(y) {
+    if (this.endA.y == this.endB.y || this.endA.x == this.endB.x) {
+      return this.endA.x;
+    }
     const minimumYValue = Math.min(this.endA.y, this.endB.y);
     const maximumYValue = Math.max(this.endA.y, this.endB.y);
     if (y < minimumYValue || y > maximumYValue) {

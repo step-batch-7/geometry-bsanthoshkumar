@@ -101,5 +101,15 @@ describe("Line", function() {
       const line = new Line({ x: 1, y: 1 }, { x: 3, y: 2 });
       assert.strictEqual(line.findX(1), 1);
     });
+
+    it("should give x value of 1st endPoint for given both y values are same", function() {
+      const line = new Line({ x: 4, y: 2 }, { x: 6, y: 2 });
+      assert.strictEqual(line.findX(2), 4);
+    });
+
+    it("should give x value of 1st endPoint for given both x values are same", function() {
+      const line = new Line({ x: 2, y: 4 }, { x: 2, y: 6 });
+      assert.strictEqual(line.findX(5), 2);
+    });
   });
 });
