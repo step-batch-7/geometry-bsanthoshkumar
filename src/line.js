@@ -39,6 +39,7 @@ class Line {
   }
 
   isParallelTo(other) {
+    if (this.isEqualTo(other)) return false;
     return this.slope == other.slope;
   }
 }

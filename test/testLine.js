@@ -14,19 +14,19 @@ describe("Line", function() {
     it("should give true for two same lines", function() {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const line2 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
-      assert.strictEqual(line1.isEqualTo(line2), true);
+      assert.ok(line1.isEqualTo(line2));
     });
 
     it("should give false for two different lines", function() {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const line2 = new Line({ x: 4, y: 3 }, { x: 2, y: 1 });
-      assert.strictEqual(line1.isEqualTo(line2), false);
+      assert.notOk(line1.isEqualTo(line2));
     });
 
     it("should give false for two lines of different instances", function() {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const line2 = { endA: { x: 1, y: 2 }, endB: { x: 3, y: 4 } };
-      assert.strictEqual(line1.isEqualTo(line2), false);
+      assert.notOk(line1.isEqualTo(line2));
     });
   });
 
@@ -60,16 +60,34 @@ describe("Line", function() {
   });
 
   describe("isParallelTo", function() {
-    it("should give true for parallel lines", function() {
+    it("should give true for parallel lines of same instance", function() {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const line2 = new Line({ x: 2, y: 4 }, { x: 6, y: 8 });
-      assert.strictEqual(line1.isParallelTo(line2), true);
+      assert.ok(line1.isParallelTo(line2));
     });
 
-    it("should give false for not parallel lines", function() {
+    it("should give false for non-parallel lines of same instance", function() {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const line2 = new Line({ x: 7, y: 10 }, { x: 8, y: 9 });
-      assert.strictEqual(line1.isParallelTo(line2), false);
+      assert.notOk(line1.isParallelTo(line2));
+    });
+
+    it("should give false for parallel lines of different instance", function() {
+      const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const line2 = { endA: { x: 4, y: 3 }, endB: { x: 2, y: 1 } };
+      assert.notOk(line1.isParallelTo(line2));
+    });
+
+    it("should give false for non-parallel lines of different instance", function() {
+      const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const line2 = { endA: { x: 4, y: 8 }, endB: { x: 2, y: 15 } };
+      assert.notOk(line1.isParallelTo(line2));
+    });
+
+    it("should give false for false for overlapping lines of same instance", function() {
+      const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const line2 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      assert.notOk(line1.isParallelTo(line2));
     });
   });
 });
