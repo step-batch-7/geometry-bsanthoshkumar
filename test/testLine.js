@@ -5,7 +5,7 @@ describe("Line", function() {
   describe("toString", function() {
     it("should give the string representation of object", function() {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
-      const expected = `Line from (1,2) to (3,4)`;
+      const expected = `[Line (1,2) to (3,4)]`;
       assert.strictEqual(line1.toString(), expected);
     });
   });
@@ -110,6 +110,28 @@ describe("Line", function() {
     it("should give x value of 1st endPoint for given both x values are same", function() {
       const line = new Line({ x: 2, y: 4 }, { x: 2, y: 6 });
       assert.strictEqual(line.findX(5), 2);
+    });
+  });
+
+  describe("findY", function() {
+    it("should give NaN for given x value outside of the line", function() {
+      const line = new Line({ x: 1, y: 2 }, { x: 2, y: 2 });
+      assert.isNaN(line.findY(4));
+    });
+
+    it("should give y value of endPoint for given x value of endPoint", function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 3, y: 2 });
+      assert.strictEqual(line.findY(3), 2);
+    });
+
+    it("should give y value of 1st endPoint for given both y values are same", function() {
+      const line = new Line({ x: 4, y: 2 }, { x: 6, y: 2 });
+      assert.strictEqual(line.findY(5), 2);
+    });
+
+    it("should give x value for given both x values are same", function() {
+      const line = new Line({ x: 2, y: 4 }, { x: 2, y: 6 });
+      assert.strictEqual(line.findY(2), 4);
     });
   });
 });

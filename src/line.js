@@ -4,6 +4,11 @@ const arePointsEqual = (point1, point2) => {
   return areXPointsEqual && areYPointsEqual;
 };
 
+const isNumberInRange = function(range, number) {
+  const lowerLimit = Math.min(...range);
+  const upperLimit = Math.max(...range);
+  return lowerLimit <= number && upperLimit >= number;
+};
 class Line {
   constructor(endA, endB) {
     this.endA = { x: endA.x, y: endA.y };
@@ -21,7 +26,7 @@ class Line {
   }
 
   toString() {
-    return `Line from (${this.endA.x},${this.endA.y}) to (${this.endB.x},${this.endB.y})`;
+    return `[Line (${this.endA.x},${this.endA.y}) to (${this.endB.x},${this.endB.y})]`;
   }
 
   get length() {
@@ -44,17 +49,16 @@ class Line {
   }
 
   findX(y) {
-    if (this.endA.y == this.endB.y || this.endA.x == this.endB.x) {
-      return this.endA.x;
-    }
-    const minimumYValue = Math.min(this.endA.y, this.endB.y);
-    const maximumYValue = Math.max(this.endA.y, this.endB.y);
-    if (y < minimumYValue || y > maximumYValue) {
-      return NaN;
-    }
-    const slopeOfLine = this.slope;
-    const yIntercept = this.endA.y - slopeOfLine * this.endA.x;
-    return (y - yIntercept) / slopeOfLine;
+    if (!isNumberInRange([this.endA.y, this.endB.y], y)) return NaN;
+    if (this.slope == +-0) return this.endA.x;
+    const yIntercept = y - this.endA.y;
+    return yIntercept / this.slope + this.endA.x;
+  }
+  findY(x) {
+    if (!isNumberInRange([this.endA.x, this.endB.x], x)) return NaN;
+    if (this.slope == Infinity || this.slope == -Infinity) return this.endA.y;
+    const xIntercept = x - this.endA.x;
+    return xIntercept * this.slope + this.endA.y;
   }
 }
 
