@@ -42,6 +42,17 @@ class Line {
     if (this.isEqualTo(other)) return false;
     return this.slope == other.slope;
   }
+
+  findX(y) {
+    const minimumYValue = Math.min(this.endA.y, this.endB.y);
+    const maximumYValue = Math.max(this.endA.y, this.endB.y);
+    if (y < minimumYValue || y > maximumYValue) {
+      return NaN;
+    }
+    const slopeOfLine = this.slope;
+    const yIntercept = this.endA.y - slopeOfLine * this.endA.x;
+    return (y - yIntercept) / slopeOfLine;
+  }
 }
 
 module.exports = Line;

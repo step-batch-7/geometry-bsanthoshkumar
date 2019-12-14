@@ -90,4 +90,16 @@ describe("Line", function() {
       assert.notOk(line1.isParallelTo(line2));
     });
   });
+
+  describe("findX", function() {
+    it("should give NaN for given y value outside of the line", function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 3, y: 2 });
+      assert.isNaN(line.findX(8));
+    });
+
+    it("should give x value of endPoint for given y value of endPoint", function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 3, y: 2 });
+      assert.strictEqual(line.findX(1), 1);
+    });
+  });
 });
