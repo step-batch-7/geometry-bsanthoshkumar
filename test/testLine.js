@@ -141,5 +141,11 @@ describe("Line", function() {
       const point = { x: 2, y: 2 };
       assert.ok(line.hasPoint(point));
     });
+
+    it("should give false for given point not on the line", function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 4, y: 4 });
+      const point = { x: 5, y: 5 };
+      assert.notOk(line.hasPoint(point));
+    });
   });
 });
