@@ -16,4 +16,13 @@ describe("Point", function() {
       assert.ok(point1.isEqualTo(point2));
     });
   });
+
+  describe("clone", function() {
+    it("should give copy of same point", function() {
+      const point = new Point(3, 4);
+      const actual = point.clone();
+      assert.deepStrictEqual(actual, point);
+      assert.notEqual(actual, point);
+    });
+  });
 });
