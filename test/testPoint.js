@@ -37,4 +37,18 @@ describe("Point", function() {
       assert.notEqual(actual, point);
     });
   });
+
+  describe("visit", function() {
+    it("should perform given sum operation and give sum of x and y of point", function() {
+      const point = new Point(3, 4);
+      const actual = point.visit((x, y) => x + y);
+      assert.strictEqual(actual, 7);
+    });
+
+    it("should perform given multiply operation and give sum of x and y of point", function() {
+      const point = new Point(3, 4);
+      const actual = point.visit((x, y) => x * y);
+      assert.strictEqual(actual, 12);
+    });
+  });
 });
