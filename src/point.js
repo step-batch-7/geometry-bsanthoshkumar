@@ -24,6 +24,13 @@ class Point {
   visit(action) {
     return action(this.x, this.y);
   }
+  findDistanceTo(other) {
+    const lengthBetweenXPoints = other.x - this.x;
+    const lengthBetweenYPoints = other.y - this.y;
+    const sumOfLengths =
+      Math.pow(lengthBetweenXPoints, 2) + Math.pow(lengthBetweenYPoints, 2);
+    return Math.sqrt(sumOfLengths);
+  }
 }
 
 module.exports = Point;

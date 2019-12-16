@@ -51,4 +51,12 @@ describe("Point", function() {
       assert.strictEqual(actual, 12);
     });
   });
+
+  describe("findDistanceTo", function() {
+    it("should give distance b/w two points", function() {
+      const point1 = new Point(2, 3);
+      const point2 = new Point(6, 9);
+      assert.approximately(point1.findDistanceTo(point2), 7, 0.5);
+    });
+  });
 });
