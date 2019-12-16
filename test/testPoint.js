@@ -58,5 +58,17 @@ describe("Point", function() {
       const point2 = new Point(6, 9);
       assert.approximately(point1.findDistanceTo(point2), 7, 0.5);
     });
+
+    it("should give distance 0 for same point", function() {
+      const point1 = new Point(2, 3);
+      const point2 = new Point(2, 3);
+      assert.approximately(point1.findDistanceTo(point2), 0, 0);
+    });
+
+    it("should give NaN for distance b/w two points for different instance", function() {
+      const point1 = new Point(2, 3);
+      const point2 = { x: 2, y: 3 };
+      assert.isNaN(point1.findDistanceTo(point2));
+    });
   });
 });
