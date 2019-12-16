@@ -8,4 +8,12 @@ describe("Point", function() {
       assert.strictEqual(point.toString(), `Point @(2,3)`);
     });
   });
+
+  describe("isEqualTo", function() {
+    it("should give true if both points are equal points", function() {
+      const point1 = new Point(4, 5);
+      const point2 = new Point(4, 5);
+      assert.ok(point1.isEqualTo(point2));
+    });
+  });
 });
