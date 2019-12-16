@@ -24,6 +24,7 @@ class Point {
   visit(action) {
     return action(this.x, this.y);
   }
+
   findDistanceTo(other) {
     if (!(other instanceof Point)) return NaN;
     const lengthBetweenXPoints = other.x - this.x;
@@ -31,6 +32,10 @@ class Point {
     const sumOfLengths =
       Math.pow(lengthBetweenXPoints, 2) + Math.pow(lengthBetweenYPoints, 2);
     return Math.sqrt(sumOfLengths);
+  }
+
+  isOn(line) {
+    return line.hasPoint(this);
   }
 }
 
