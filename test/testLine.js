@@ -170,4 +170,12 @@ describe("Line", function() {
       assert.deepStrictEqual(line.split, [firstLine, secondLine]);
     });
   });
+
+  describe("findPointFromStart", function() {
+    it("should give point from first end of line at given distance", function() {
+      const line = new Line({ x: 0, y: 1 }, { x: 0, y: 11 });
+      const point = new Point(0, 6);
+      assert.deepStrictEqual(line.findPointFromStart(5), point);
+    });
+  });
 });

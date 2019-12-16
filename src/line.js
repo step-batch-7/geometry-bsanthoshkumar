@@ -1,4 +1,4 @@
-const Point = require("../src/point");
+const Point = require("./point");
 
 const isNumberInRange = function(range, number) {
   const lowerLimit = Math.min(...range);
@@ -38,7 +38,6 @@ class Line {
 
   isParallelTo(other) {
     if (areCollinearPoints(this.endA, this.endB, other.endA)) return false;
-    if (this.isEqualTo(other)) return false;
     return this.slope == other.slope;
   }
 
@@ -63,10 +62,18 @@ class Line {
   }
 
   get split() {
-    const midPoint = {};
-    midPoint.x = (this.endA.x + this.endB.x) / 2;
-    midPoint.y = (this.endA.y + this.endB.y) / 2;
+    const midPoint = {
+      x: (this.endA.x + this.endB.x) / 2,
+      y: (this.endA.y + this.endB.y) / 2
+    };
     return [new Line(this.endA, midPoint), new Line(midPoint, this.endB)];
+  }
+
+  findPointFromStart(distance) {
+    const distanceRatio = distance / this.length;
+    const x = (1 - distanceRatio) * this.endA.x + distanceRatio * this.endB.x;
+    const y = (1 - distanceRatio) * this.endA.y + distanceRatio * this.endB.y;
+    return new Point(x, y);
   }
 }
 

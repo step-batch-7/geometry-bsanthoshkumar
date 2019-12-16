@@ -25,8 +25,8 @@ describe("Point", function() {
 
     it("should give false for equal points of different instance", function() {
       const point1 = new Point(4, 5);
-      const point2 = new Point(4, 5);
-      assert.ok(point1.isEqualTo(point2));
+      const point2 = { x: 4, y: 5 };
+      assert.notOk(point1.isEqualTo(point2));
     });
   });
 
