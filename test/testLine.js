@@ -85,10 +85,16 @@ describe("Line", function() {
       assert.notOk(line1.isParallelTo(line2));
     });
 
-    it("should give false for false for overlapping lines of same instance", function() {
+    it("should give false for overlapping lines of same instance", function() {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const line2 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       assert.notOk(line1.isParallelTo(line2));
+    });
+
+    it("should give false for collinear lines", function() {
+      const line1 = new Line({ x: 0, y: 0 }, { x: 3, y: 3 });
+      const line2 = new Line({ x: 2, y: 2 }, { x: 4, y: 4 });
+      assert.strictEqual(line1.isParallelTo(line2), false);
     });
   });
 

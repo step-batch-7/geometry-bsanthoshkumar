@@ -11,6 +11,12 @@ const isNumberInRange = function(range, number) {
   const upperLimit = Math.max(...range);
   return lowerLimit <= number && upperLimit >= number;
 };
+
+const areCollinearPoints = function(point1, point2, point3) {
+  const line1 = new Line(point1, point2);
+  const line2 = new Line(point2, point3);
+  return (line1.slope = line2.slope);
+};
 class Line {
   constructor(endA, endB) {
     this.endA = { x: endA.x, y: endA.y };
@@ -46,6 +52,7 @@ class Line {
   }
 
   isParallelTo(other) {
+    if (areCollinearPoints(this.endA, this.endB, other.endA)) return false;
     if (this.isEqualTo(other)) return false;
     return this.slope == other.slope;
   }
