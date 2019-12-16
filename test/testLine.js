@@ -1,5 +1,6 @@
 const assert = require("chai").assert;
 const Line = require("../src/line");
+const Point = require("../src/point");
 
 describe("Line", function() {
   describe("toString", function() {
@@ -138,13 +139,19 @@ describe("Line", function() {
   describe("hasPoint", function() {
     it("should return true for given point is on the line", function() {
       const line = new Line({ x: 1, y: 1 }, { x: 4, y: 4 });
-      const point = { x: 2, y: 2 };
+      const point = new Point(2, 2);
       assert.ok(line.hasPoint(point));
     });
 
     it("should give false for given point not on the line", function() {
       const line = new Line({ x: 1, y: 1 }, { x: 4, y: 4 });
-      const point = { x: 5, y: 5 };
+      const point = new Point(5, 5);
+      assert.notOk(line.hasPoint(point));
+    });
+
+    it("should give false for point of different instance", function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 4, y: 4 });
+      const point = { x: 2, y: 2 };
       assert.notOk(line.hasPoint(point));
     });
   });
