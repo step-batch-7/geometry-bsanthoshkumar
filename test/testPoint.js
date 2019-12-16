@@ -10,7 +10,19 @@ describe("Point", function() {
   });
 
   describe("isEqualTo", function() {
-    it("should give true if both points are equal points", function() {
+    it("should give true for equal points of same instance", function() {
+      const point1 = new Point(4, 5);
+      const point2 = new Point(4, 5);
+      assert.ok(point1.isEqualTo(point2));
+    });
+
+    it("should give false for non equal points instance", function() {
+      const point1 = new Point(4, 5);
+      const point2 = new Point(5, 5);
+      assert.notOk(point1.isEqualTo(point2));
+    });
+
+    it("should give false for equal points of different instance", function() {
       const point1 = new Point(4, 5);
       const point2 = new Point(4, 5);
       assert.ok(point1.isEqualTo(point2));
