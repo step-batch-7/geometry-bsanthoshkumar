@@ -60,6 +60,10 @@ class Line {
     const xIntercept = x - this.endA.x;
     return xIntercept * this.slope + this.endA.y;
   }
+
+  hasPoint(point) {
+    return point.y == this.findY(point.x) || point.x == this.findX(point.y);
+  }
 }
 
 module.exports = Line;

@@ -134,4 +134,12 @@ describe("Line", function() {
       assert.strictEqual(line.findY(2), 4);
     });
   });
+
+  describe("hasPoint", function() {
+    it("should return true for given point is on the line", function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 4, y: 4 });
+      const point = { x: 2, y: 2 };
+      assert.ok(line.hasPoint(point));
+    });
+  });
 });
