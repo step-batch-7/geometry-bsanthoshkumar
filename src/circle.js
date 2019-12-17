@@ -17,6 +17,11 @@ class Circle {
   get perimeter() {
     return 2 * Math.PI * this.radius;
   }
+
+  isEqualTo(other) {
+    if (!(other instanceof Circle)) return false;
+    return this.center.isEqualTo(other.center) && this.radius == other.radius;
+  }
 }
 
 module.exports = Circle;
