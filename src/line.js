@@ -9,7 +9,7 @@ const isNumberInRange = function(range, number) {
 const areCollinearPoints = function(point1, point2, point3) {
   const line1 = new Line(point1, point2);
   const line2 = new Line(point2, point3);
-  return (line1.slope = line2.slope);
+  return line1.slope == line2.slope;
 };
 class Line {
   constructor(endA, endB) {
@@ -61,7 +61,7 @@ class Line {
     );
   }
 
-  get split() {
+  split() {
     const midPoint = {
       x: (this.endA.x + this.endB.x) / 2,
       y: (this.endA.y + this.endB.y) / 2
