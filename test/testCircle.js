@@ -41,15 +41,21 @@ describe("Circle", function() {
       assert.ok(circle1.isEqualTo(circle2));
     });
 
-    it.only("should give false for 2 circles of same instance and different radius", function() {
+    it.only("should give false for circles of same instance and different radius", function() {
       const circle1 = new Circle({ x: 1, y: 2 }, 3);
       const circle2 = new Circle({ x: 1, y: 2 }, 5);
       assert.notOk(circle1.isEqualTo(circle2));
     });
 
-    it.only("should give false for 2 circles of same instance and different center", function() {
+    it.only("should give false for circles of same instance and different center", function() {
       const circle1 = new Circle({ x: 1, y: 2 }, 3);
       const circle2 = new Circle({ x: 2, y: 1 }, 3);
+      assert.notOk(circle1.isEqualTo(circle2));
+    });
+
+    it.only("should give false for equal circles of different instance", function() {
+      const circle1 = new Circle({ x: 1, y: 2 }, 3);
+      const circle2 = { center: { x: 1, y: 2 }, radius: 3 };
       assert.notOk(circle1.isEqualTo(circle2));
     });
   });
