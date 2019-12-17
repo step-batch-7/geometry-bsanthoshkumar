@@ -116,5 +116,11 @@ describe("Circle", function() {
       const point = new Point(0, 4);
       assert.notOk(circle.covers(point));
     });
+
+    it("should give false for point is inside the circle of different instance", function() {
+      const circle = new Circle({ x: 0, y: 0 }, 3);
+      const point = { x: 0, y: 3 };
+      assert.notOk(circle.covers(point));
+    });
   });
 });
