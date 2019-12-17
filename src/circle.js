@@ -22,6 +22,11 @@ class Circle {
     if (!(other instanceof Circle)) return false;
     return this.center.isEqualTo(other.center) && this.radius == other.radius;
   }
+
+  hasPoint(point) {
+    if (!(point instanceof Point)) return false;
+    return this.center.findDistanceTo(point) == this.radius;
+  }
 }
 
 module.exports = Circle;
