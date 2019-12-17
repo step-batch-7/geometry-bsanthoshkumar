@@ -35,5 +35,13 @@ describe("Rectangle", function() {
       const rectangle2 = new Rectangle({ x: 1, y: 4 }, { x: 3, y: 1 });
       assert.notOk(rectangle1.isEqualTo(rectangle2));
     });
+
+    it("should give false for equal lines of different instance", function() {
+      const rectangle1 = new Rectangle({ x: 1, y: 3 }, { x: 4, y: 1 });
+      const rectangle2 = {
+        diagonal: { endA: { x: 1, y: 3 }, endB: { x: 4, y: 1 } }
+      };
+      assert.notOk(rectangle1.isEqualTo(rectangle2));
+    });
   });
 });
