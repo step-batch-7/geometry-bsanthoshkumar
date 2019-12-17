@@ -23,7 +23,14 @@ class Rectangle {
 
   isEqualTo(other) {
     if (!(other instanceof Rectangle)) return false;
-    return this.diagonal.isEqualTo(other.diagonal);
+    const diagonal2 = new Line(
+      { x: this.diagonal.endB.x, y: this.diagonal.endA.y },
+      { x: this.diagonal.endA.x, y: this.diagonal.endB.y }
+    );
+    return (
+      this.diagonal.isEqualTo(other.diagonal) ||
+      diagonal2.isEqualTo(other.diagonal)
+    );
   }
 }
 

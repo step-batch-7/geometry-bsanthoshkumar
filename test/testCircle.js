@@ -105,10 +105,10 @@ describe("Circle", function() {
       assert.ok(circle.covers(point));
     });
 
-    it("should give false for point is on the circle", function() {
+    it("should give true for point is on the circle", function() {
       const circle = new Circle({ x: 0, y: 0 }, 3);
       const point = new Point(0, 3);
-      assert.notOk(circle.covers(point));
+      assert.ok(circle.covers(point));
     });
 
     it("should give false for point is outside the circle", function() {

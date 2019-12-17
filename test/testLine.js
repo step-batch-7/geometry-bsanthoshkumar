@@ -54,7 +54,7 @@ describe("Line", function() {
       assert.strictEqual(line.slope, 0);
     });
 
-    it("should give slope 0 for line of same x-values", function() {
+    it("should give slope Infinity for line of same x-values", function() {
       const line = new Line({ x: 1, y: 3 }, { x: 1, y: 5 });
       assert.strictEqual(line.slope, Infinity);
     });

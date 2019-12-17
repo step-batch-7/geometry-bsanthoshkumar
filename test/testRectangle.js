@@ -24,12 +24,17 @@ describe("Rectangle", function() {
   });
 
   describe("isEqualTo", function() {
-    it("should give true for equal lines of same instance", function() {
+    it("should give true for equal diagonals of same instance", function() {
       const rectangle1 = new Rectangle({ x: 1, y: 3 }, { x: 4, y: 1 });
       const rectangle2 = new Rectangle({ x: 1, y: 3 }, { x: 4, y: 1 });
       assert.ok(rectangle1.isEqualTo(rectangle2));
     });
 
+    it("should give true for different diagonals of same rectangle", function() {
+      const rectangle1 = new Rectangle({ x: 1, y: 1 }, { x: 4, y: 5 });
+      const rectangle2 = new Rectangle({ x: 4, y: 1 }, { x: 1, y: 5 });
+      assert.ok(rectangle1.isEqualTo(rectangle2));
+    });
     it("should give false for non equal lines of same instance", function() {
       const rectangle1 = new Rectangle({ x: 1, y: 3 }, { x: 4, y: 1 });
       const rectangle2 = new Rectangle({ x: 1, y: 4 }, { x: 3, y: 1 });
