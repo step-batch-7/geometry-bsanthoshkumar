@@ -83,4 +83,12 @@ describe("Circle", function() {
       assert.notOk(circle.hasPoint(point));
     });
   });
+
+  describe("moveTo", function() {
+    it("should give new circle for given circle and point", function() {
+      const circle1 = new Circle({ x: 1, y: 2 }, 3);
+      const circle2 = new Circle({ x: 5, y: 6 }, 3);
+      assert.ok(circle1.moveTo({ x: 5, y: 6 }).isEqualTo(circle2));
+    });
+  });
 });
