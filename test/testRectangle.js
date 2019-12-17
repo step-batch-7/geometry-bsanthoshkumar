@@ -22,4 +22,18 @@ describe("Rectangle", function() {
       assert.strictEqual(rectangle.perimeter, 10);
     });
   });
+
+  describe("isEqualTo", function() {
+    it("should give true for equal lines of same instance", function() {
+      const rectangle1 = new Rectangle({ x: 1, y: 3 }, { x: 4, y: 1 });
+      const rectangle2 = new Rectangle({ x: 1, y: 3 }, { x: 4, y: 1 });
+      assert.ok(rectangle1.isEqualTo(rectangle2));
+    });
+
+    it("should give false for non equal lines of same instance", function() {
+      const rectangle1 = new Rectangle({ x: 1, y: 3 }, { x: 4, y: 1 });
+      const rectangle2 = new Rectangle({ x: 1, y: 4 }, { x: 3, y: 1 });
+      assert.notOk(rectangle1.isEqualTo(rectangle2));
+    });
+  });
 });

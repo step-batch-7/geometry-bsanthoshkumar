@@ -20,6 +20,11 @@ class Rectangle {
     const breadth = this.diagonal.endB.y - this.diagonal.endA.y;
     return 2 * (Math.abs(length) + Math.abs(breadth));
   }
+
+  isEqualTo(other) {
+    if (!(other instanceof Rectangle)) return false;
+    return this.diagonal.isEqualTo(other.diagonal);
+  }
 }
 
 module.exports = Rectangle;
