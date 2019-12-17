@@ -31,8 +31,8 @@ class Point {
     return Math.sqrt(sumOfLengths);
   }
 
-  isOn(line) {
-    return line.hasPoint(this);
+  isOn(other) {
+    return other.hasPoint(this);
   }
 }
 
