@@ -7,9 +7,10 @@ const isNumberInRange = function(range, number) {
 };
 
 const areCollinearPoints = function(point1, point2, point3) {
-  const line1 = new Line(point1, point2);
-  const line2 = new Line(point2, point3);
-  return line1.slope == line2.slope;
+  const [x1, y1] = [point1.x, point1.y];
+  const [x2, y2] = [point2.x, point2.y];
+  const [x3, y3] = [point3.x, point3.y];
+  return x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2) == 0;
 };
 class Line {
   constructor(endA, endB) {
@@ -40,8 +41,12 @@ class Line {
   }
 
   isParallelTo(other) {
-    if (areCollinearPoints(this.endA, this.endB, other.endA)) return false;
-    return this.slope == other.slope;
+    if (
+      areCollinearPoints(this.endA, this.endB, other.endA) ||
+      !(other instanceof Line)
+    )
+      return false;
+    return this.slope === other.slope;
   }
 
   findX(y) {
