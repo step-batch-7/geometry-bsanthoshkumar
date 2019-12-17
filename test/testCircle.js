@@ -97,4 +97,24 @@ describe("Circle", function() {
       assert.ok(circle1.moveTo({ x: 1, y: 2 }).isEqualTo(circle2));
     });
   });
+
+  describe("covers", function() {
+    it("should give true for point is inside the circle", function() {
+      const circle = new Circle({ x: 0, y: 0 }, 3);
+      const point = new Point(0, 2);
+      assert.ok(circle.covers(point));
+    });
+
+    it("should give false for point is on the circle", function() {
+      const circle = new Circle({ x: 0, y: 0 }, 3);
+      const point = new Point(0, 3);
+      assert.notOk(circle.covers(point));
+    });
+
+    it("should give false for point is outside the circle", function() {
+      const circle = new Circle({ x: 0, y: 0 }, 3);
+      const point = new Point(0, 4);
+      assert.notOk(circle.covers(point));
+    });
+  });
 });
