@@ -54,6 +54,14 @@ class Rectangle {
     const isYInRange = isNumberInRange([endA.y, endB.y], other.y);
     return (isXEqual && isYInRange) || (isYEqual && isXInRange);
   }
+
+  covers(other) {
+    if (!(other instanceof Point)) return false;
+    const [endA, endB] = [this.diagonal.endA, this.diagonal.endB];
+    const isXInRange = isNumberInRange([endA.x, endB.x], other.x);
+    const isYInRange = isNumberInRange([endA.y, endB.y], other.y);
+    return isXInRange && isYInRange && !this.hasPoint(other);
+  }
 }
 
 module.exports = Rectangle;
