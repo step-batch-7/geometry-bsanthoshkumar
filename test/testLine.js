@@ -18,6 +18,12 @@ describe("Line", function() {
       assert.ok(line1.isEqualTo(line2));
     });
 
+    it("should give true for two same lines in reverse", function() {
+      const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const line2 = new Line({ x: 3, y: 4 }, { x: 1, y: 2 });
+      assert.ok(line1.isEqualTo(line2));
+    });
+
     it("should give false for two different lines", function() {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const line2 = new Line({ x: 4, y: 3 }, { x: 2, y: 1 });
@@ -101,6 +107,12 @@ describe("Line", function() {
       const line1 = new Line({ x: 0, y: 0 }, { x: 0, y: 4 });
       const line2 = new Line({ x: 1, y: 1 }, { x: 1, y: -3 });
       assert.isTrue(line1.isParallelTo(line2));
+    });
+
+    it("should give true if both lines are parallel to X-axis", function() {
+      const line1 = new Line({ x: 0, y: 0 }, { x: 0, y: 1 });
+      const line2 = new Line({ x: 1, y: 0 }, { x: 1, y: -2 });
+      assert.ok(line1.isParallelTo(line2));
     });
   });
 
