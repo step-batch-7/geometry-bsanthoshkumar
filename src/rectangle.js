@@ -1,4 +1,5 @@
 const Line = require("./line");
+const Point = require("./point");
 
 const getLengthAndWidth = diagonal => {
   const [endA, endB] = [diagonal.endA, diagonal.endB];
@@ -45,12 +46,13 @@ class Rectangle {
   }
 
   hasPoint(other) {
+    if (!(other instanceof Point)) return false;
     const [endA, endB] = [this.diagonal.endA, this.diagonal.endB];
     const isXEqual = endA.x == other.x || endB.x == other.x;
     const isYEqual = endA.y == other.y || endB.y == other.y;
     const isXInRange = isNumberInRange([endA.x, endB.x], other.x);
     const isYInRange = isNumberInRange([endA.y, endB.y], other.y);
-    return (isXEqual && isXInRange) || (isYEqual && isYInRange);
+    return (isXEqual && isYInRange) || (isYEqual && isXInRange);
   }
 }
 

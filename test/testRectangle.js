@@ -57,5 +57,29 @@ describe("Rectangle", function() {
       const point = new Point(0, 1);
       assert.ok(rectangle.hasPoint(point));
     });
+
+    it("should give true for given point is inside of rectangle", function() {
+      const rectangle = new Rectangle({ x: 0, y: 2 }, { x: 4, y: 0 });
+      const point = new Point(1, 1);
+      assert.notOk(rectangle.hasPoint(point));
+    });
+
+    it("Should give false for given point is outside the rectangle", () => {
+      const rectangle = new Rectangle({ x: 0, y: 2 }, { x: 4, y: 0 });
+      const point = new Point(6, 0);
+      assert.notOk(rectangle.hasPoint(point));
+    });
+
+    it("Should give false for given point is on the diagonal", () => {
+      const rectangle = new Rectangle({ x: 0, y: 2 }, { x: 4, y: 0 });
+      const point = new Point(2, 1);
+      assert.notOk(rectangle.hasPoint(point));
+    });
+
+    it("Should give false for given point is not instance of Point class", () => {
+      const rectangle = new Rectangle({ x: 0, y: 2 }, { x: 4, y: 0 });
+      const point = { x: 0, y: 1 };
+      assert.notOk(rectangle.hasPoint(point));
+    });
   });
 });
