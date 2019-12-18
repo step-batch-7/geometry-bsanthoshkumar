@@ -96,6 +96,12 @@ describe("Line", function() {
       const line2 = new Line({ x: 2, y: 2 }, { x: 4, y: 4 });
       assert.strictEqual(line1.isParallelTo(line2), false);
     });
+
+    it("should give true if both lines are parallel to Y-axis and slope is in negative", function() {
+      const line1 = new Line({ x: 0, y: 0 }, { x: 0, y: 4 });
+      const line2 = new Line({ x: 1, y: 1 }, { x: 1, y: -3 });
+      assert.isTrue(line1.isParallelTo(line2));
+    });
   });
 
   describe("findX", function() {
