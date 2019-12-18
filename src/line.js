@@ -46,7 +46,7 @@ class Line {
       !(other instanceof Line)
     )
       return false;
-    if (Math.abs(this.slope) == Infinity && Math.abs(this.slope) == Infinity)
+    if (Math.abs(this.slope) == Infinity && Math.abs(other.slope) == Infinity)
       return true;
     return this.slope === other.slope;
   }
