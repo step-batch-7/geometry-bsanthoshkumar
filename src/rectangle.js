@@ -1,37 +1,40 @@
-const Point = require("./point");
 const Line = require("./line");
 
+const getLengthAndWidth = diagonal => {
+  const [endA, endB] = [diagonal.endA, diagonal.endB];
+  const length = Math.abs(endB.x - endA.x);
+  const breadth = Math.abs(endB.y - endA.y);
+  return { length, breadth };
+};
 class Rectangle {
-  constructor(vertexA, vertexC) {
-    this.vertexA = new Point(vertexA.x, vertexA.y);
-    this.vertexC = new Point(vertexC.x, vertexC.y);
-    this.vertexB = new Point(vertexC.x, vertexA.y);
-    this.vertexD = new Point(vertexA.x, vertexC.y);
+  constructor(endA, endB) {
+    this.diagonal = new Line(endA, endB);
   }
 
   toString() {
-    return `[Rectangle (${this.vertexA.x},${this.vertexA.y}) to (${this.vertexC.x},${this.vertexC.y})]`;
+    return `[Rectangle (${this.diagonal.endA.x},${this.diagonal.endA.y}) to (${this.diagonal.endB.x},${this.diagonal.endB.y})]`;
   }
 
   get area() {
-    const length = this.vertexA.findDistanceTo(this.vertexB);
-    const breadth = this.vertexB.findDistanceTo(this.vertexC);
+    const { length, breadth } = getLengthAndWidth(this.diagonal);
     return length * breadth;
   }
 
   get perimeter() {
-    const length = this.vertexA.findDistanceTo(this.vertexB);
-    const breadth = this.vertexB.findDistanceTo(this.vertexC);
+    const { length, breadth } = getLengthAndWidth(this.diagonal);
     return 2 * (length + breadth);
   }
 
   isEqualTo(other) {
     if (!(other instanceof Rectangle)) return false;
-    const diagonal1 = new Line(this.vertexA, this.vertexC);
-    const diagonal2 = new Line(this.vertexB, this.vertexD);
-    const otherDiagonal = new Line(other.vertexA, other.vertexC);
+    const [endA, endB] = [this.diagonal.endA, this.diagonal.endB];
+    const diagonal2 = new Line(
+      { x: endB.x, y: endA.y },
+      { x: endA.x, y: endB.y }
+    );
     return (
-      diagonal1.isEqualTo(otherDiagonal) || diagonal2.isEqualTo(otherDiagonal)
+      this.diagonal.isEqualTo(other.diagonal) ||
+      diagonal2.isEqualTo(other.diagonal)
     );
   }
 }
