@@ -82,6 +82,7 @@ class Line {
     if (distanceRatio < 0 || distanceRatio > 1) return null;
     const x = (1 - distanceRatio) * this.endA.x + distanceRatio * this.endB.x;
     const y = (1 - distanceRatio) * this.endA.y + distanceRatio * this.endB.y;
+    if (isNaN(x) || isNaN(y)) return null;
     return new Point(x, y);
   }
 
@@ -90,6 +91,7 @@ class Line {
     if (distanceRatio < 0 || distanceRatio > 1) return null;
     const x = (1 - distanceRatio) * this.endB.x + distanceRatio * this.endA.x;
     const y = (1 - distanceRatio) * this.endB.y + distanceRatio * this.endA.y;
+    if (isNaN(x) || isNaN(y)) return null;
     return new Point(x, y);
   }
 }

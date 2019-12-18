@@ -190,14 +190,19 @@ describe("Line", function() {
       assert.deepStrictEqual(line.findPointFromStart(10), point);
     });
 
-    it("should return null for if distance is greater than length of line", function() {
+    it("should return null for distance is greater than length of line", function() {
       const line = new Line({ x: 0, y: 1 }, { x: 0, y: 5 });
       assert.isNull(line.findPointFromStart(5));
     });
 
-    it("should return null for if distance is less than length of line", function() {
+    it("should return null for distance is less than length of line", function() {
       const line = new Line({ x: 0, y: 1 }, { x: 0, y: 5 });
       assert.isNull(line.findPointFromStart(-5));
+    });
+
+    it("should return null for given point is not a number", function() {
+      const line = new Line({ x: 0, y: 1 }, { x: 0, y: 5 });
+      assert.isNull(line.findPointFromStart("hi"));
     });
   });
 
@@ -228,6 +233,11 @@ describe("Line", function() {
     it("should return null for if distance is less than length of line", function() {
       const line = new Line({ x: 0, y: 1 }, { x: 0, y: 5 });
       assert.isNull(line.findPointFromEnd(-5));
+    });
+
+    it("should return null for given point is not a number", function() {
+      const line = new Line({ x: 0, y: 1 }, { x: 0, y: 5 });
+      assert.isNull(line.findPointFromEnd("hi"));
     });
   });
 });
