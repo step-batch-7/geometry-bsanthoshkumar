@@ -6,6 +6,12 @@ const getLengthAndWidth = diagonal => {
   const breadth = Math.abs(endB.y - endA.y);
   return { length, breadth };
 };
+
+const isNumberInRange = function(range, number) {
+  const lowerLimit = Math.min(...range);
+  const upperLimit = Math.max(...range);
+  return lowerLimit <= number && upperLimit >= number;
+};
 class Rectangle {
   constructor(endA, endB) {
     this.diagonal = new Line(endA, endB);
@@ -36,6 +42,15 @@ class Rectangle {
       this.diagonal.isEqualTo(other.diagonal) ||
       diagonal2.isEqualTo(other.diagonal)
     );
+  }
+
+  hasPoint(other) {
+    const [endA, endB] = [this.diagonal.endA, this.diagonal.endB];
+    const isXEqual = endA.x == other.x || endB.x == other.x;
+    const isYEqual = endA.y == other.y || endB.y == other.y;
+    const isXInRange = isNumberInRange([endA.x, endB.x], other.x);
+    const isYInRange = isNumberInRange([endA.y, endB.y], other.y);
+    return (isXEqual && isXInRange) || (isYEqual && isYInRange);
   }
 }
 
